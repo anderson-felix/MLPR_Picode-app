@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Router, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import { observer } from "mobx-react-lite";
+import "bootstrap/dist/css/bootstrap.css";
 
-function App() {
+import { HomePage } from "./pages/Home";
+import { CreateBook } from "./pages/CreateBook";
+
+const App = observer(() => {
+  const history = createBrowserHistory();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Router history={history}>
+        <Route path="/books" exact component={HomePage} />
+        <Route path="/createBook" exact component={CreateBook} />
+        <Route path="/" exact render={() => <Redirect to={"/books"} />} />
+      </Router>
+    </React.Fragment>
   );
-}
+});
 
 export default App;
