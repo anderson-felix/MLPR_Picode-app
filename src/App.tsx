@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import { observer } from 'mobx-react-lite';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { HomePage } from './pages/Home';
+import { HomePage } from './pages/HomePage';
 
 const App = observer(() => {
   const history = createBrowserHistory();
