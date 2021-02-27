@@ -33,7 +33,8 @@ Após uma confirmação, o registro é deletado e não será mais exibido na pá
 
 ### [Linter]()
 
-Esse projeto usa o `prettier` com `eslint` para estilo de código.
+Esse projeto usa o `prettier` com `eslint` (padrão airbnb) para estilo de código.\
+Por incompatibilidade de versão do `eslint` com o `react` e `typescript`, foram usadas <i>keywords</i> entre as linhas do código.
 
 <br>
 
