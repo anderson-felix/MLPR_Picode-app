@@ -1,114 +1,101 @@
 import React from "react";
-import { useArray } from "react-hanger";
-import { useHistory } from "react-router-dom";
+import { useArray, useInput } from "react-hanger";
 import { observer } from "mobx-react-lite";
-import {
-  PageHeader,
-  Button,
-  Descriptions,
-  Popconfirm,
-  Input,
-  Modal,
-  Layout,
-} from "antd";
+import { PageHeader, Button, Descriptions, Popconfirm, Input } from "antd";
 
-import { LayoutDiv, HeaderSpace } from "../components/BookStyle";
-import { CreateBook } from "../pages/CreateBook";
+import { LayoutDiv, HeaderSpace } from "../styles/PageStyle";
+import { CreateBook, Ref } from "../pages/CreateBook";
+import {
+  GetAll as GetAllBooks,
+  Remove as RemoveBook,
+} from "../controllers/books";
 import { Book } from "../interfaces/Book";
+import { Link } from "react-router-dom";
 
 export const HomePage = observer(() => {
   const { Search } = Input;
 
-  const [visible, setVisible] = React.useState(false);
+  const keyword = useInput("");
 
-  const history = useHistory();
+  const createBookModal = React.useRef<Ref>();
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  const books = useArray<Book>([]);
 
-  const returnToLogin = React.useCallback(() => {
-    history.push("/");
-  }, [history]);
+  const loadBooks = React.useCallback(async () => {
+    books.setValue(await GetAllBooks(keyword.value));
+  }, [books, keyword]);
 
-  const onSearch = (value: any) => console.log(value);
-
-  const books = useArray<Book>([
-    {
-      title: "O lado bom da vida",
-      pages: "309",
-      authors: "Matthew Quick",
-      description:
-        "Relata a história de Pat Peoples, um ex-professor de história na casa dos 30 anos, acaba de sair de uma instituição psiquiátrica.",
-      tags: "humor romance humorous-fiction",
+  const deleteBook = React.useCallback(
+    async (_id: string) => {
+      await RemoveBook(_id);
+      loadBooks();
     },
-    {
-      title: "Harry Potter e a pedra filosofal",
-      pages: "208",
-      authors: "J. K. Rowling",
-      description: "Relata o primeiro ano de Harry na escola de Hogwarts",
-      tags: "fiction fantasy",
-    },
-    {
-      title: "Jogos vorazes",
-      pages: "400",
-      authors: "Suzanne Collins",
-      description: "Um reality show onde o último sobrevivente vence ",
-      tags: "fiction fantasy drama",
-    },
-  ]);
+    [loadBooks]
+  );
+
+  React.useEffect(() => {
+    loadBooks();
+  }, []); //eslint-disable-line
 
   return (
     <React.Fragment>
       <HeaderSpace>
+        <h2>
+          <b>MLPR</b> - Melhores livros para relembrar
+        </h2>
         <div className="space-header">
-          <Button className="btn-add-book" onClick={showModal}>
+          <Button
+            className="btn-add-book"
+            onClick={createBookModal.current?.open}
+          >
             Adicionar
           </Button>
           <Search
             className="search-header"
             placeholder="Busca por tag"
-            onSearch={onSearch}
+            onSearch={loadBooks}
+            onChange={keyword.onChange}
             style={{ width: 200 }}
+            value={keyword.value}
           />
         </div>
       </HeaderSpace>
       <LayoutDiv>
         {books.value.map((book) => (
-          <div className="book-item">
+          <div className="book-item" key={`${book._id}`}>
             <PageHeader
               className="page-header"
               ghost={false}
               title={book.title}
               subTitle={`${book.authors} - ${book.pages} páginas`}
-              extra={[
+              extra={
                 <Popconfirm
                   title="Deseja realmente remover o livro?"
                   okText="Sim"
+                  onConfirm={() => deleteBook(book._id)}
                   cancelText="Não"
                 >
                   <Button key="1" className="btn-remove-book">
                     Remover
                   </Button>
-                </Popconfirm>,
-              ]}
+                </Popconfirm>
+              }
             >
               <Descriptions size="small" column={1}>
                 <Descriptions.Item label={<b>Descrição</b>}>
                   {book.description}
                 </Descriptions.Item>
                 <Descriptions.Item label={<b>Tags</b>}>
-                  {book.tags.split(" ").map((tag) => ` #${tag}`)}
+                  <Link to={loadBooks}>
+                    {book.tags.map((tag) => ` #${tag}`)}
+                  </Link>
                 </Descriptions.Item>
               </Descriptions>
             </PageHeader>
           </div>
         ))}
       </LayoutDiv>
-      <Modal onCancel={returnToLogin} footer={null} visible={visible}>
-        <CreateBook />
-      </Modal>
-      <Layout></Layout>
+      <CreateBook ref={createBookModal} loadBooks={loadBooks} />
     </React.Fragment>
   );
 });
