@@ -1,21 +1,24 @@
-import React from "react";
-import { useArray, useInput } from "react-hanger";
-import { observer } from "mobx-react-lite";
-import { PageHeader, Button, Descriptions, Popconfirm, Input } from "antd";
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable import/order */
+/* eslint-disable no-use-before-define */
+import React from 'react';
+import { useArray, useInput } from 'react-hanger';
+import { observer } from 'mobx-react-lite';
+import { PageHeader, Button, Descriptions, Popconfirm, Input } from 'antd';
 
-import { LayoutDiv, HeaderSpace } from "../styles/PageStyle";
-import { ModalCreateBook, Ref } from "../components/ModalCreateBook";
+import { LayoutDiv, HeaderSpace } from '../styles/PageStyle';
+import { ModalCreateBook, Ref } from '../components/ModalCreateBook';
 import {
   GetAll as GetAllBooks,
   Remove as RemoveBook,
-} from "../controllers/books";
-import { Book } from "../interfaces/Book";
-import { Link } from "react-router-dom";
+} from '../controllers/books';
+import { Book } from '../interfaces/Book';
 
 export const HomePage = observer(() => {
   const { Search } = Input;
 
-  const keyword = useInput("");
+  const keyword = useInput('');
 
   const createBookModal = React.useRef<Ref>();
 
@@ -86,9 +89,7 @@ export const HomePage = observer(() => {
                   {book.description}
                 </Descriptions.Item>
                 <Descriptions.Item label={<b>Tags</b>}>
-                  <Link to={loadBooks}>
-                    {book.tags.map((tag) => ` #${tag}`)}
-                  </Link>
+                  {book.tags.map((tag) => ` #${tag}`)}
                 </Descriptions.Item>
               </Descriptions>
             </PageHeader>

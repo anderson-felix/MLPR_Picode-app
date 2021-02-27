@@ -1,10 +1,12 @@
-import React from "react";
-import { Route, Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
-import { observer } from "mobx-react-lite";
-import "bootstrap/dist/css/bootstrap.css";
+/* eslint-disable react/jsx-fragments */
+// eslint-disable-next-line no-use-before-define
+import React from 'react';
+import { Route, Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { observer } from 'mobx-react-lite';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from './pages/HomePage';
 
 const App = observer(() => {
   const history = createBrowserHistory();

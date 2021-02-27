@@ -1,9 +1,12 @@
-import React from "react";
-import { useInput, useBoolean } from "react-hanger";
-import { Button, Space, Modal, message } from "antd";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable no-use-before-define */
+import React from 'react';
+import { useInput, useBoolean } from 'react-hanger';
+import { Button, Space, Modal, message } from 'antd';
 
-import { Create as CreateBookController } from "../controllers/books/Create";
-import { CreateSpace } from "../styles/PageStyle";
+import { Create as CreateBookController } from '../controllers/books/Create';
+import { CreateSpace } from '../styles/PageStyle';
 
 interface Props {
   loadBooks: () => void;
@@ -17,11 +20,11 @@ export interface Ref {
 export const ModalCreateBook = React.forwardRef(({ loadBooks }: Props, ref) => {
   const showModal = useBoolean(false);
 
-  const title = useInput("");
-  const authors = useInput("");
-  const pages = useInput("");
-  const description = useInput("");
-  const tags = useInput("");
+  const title = useInput('');
+  const authors = useInput('');
+  const pages = useInput('');
+  const description = useInput('');
+  const tags = useInput('');
 
   const canCreate = React.useCallback(() => {
     return (
