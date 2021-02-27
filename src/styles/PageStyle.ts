@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const LayoutDiv = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
   padding-bottom: 50px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   .book-item {
     box-shadow: 0px 4px 8px #00000020;
     background-color: #f5f5f5;
@@ -30,7 +30,7 @@ export const HeaderSpace = styled.div`
   h2 {
     text-align: center;
     opacity: 50%;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   .space-header {

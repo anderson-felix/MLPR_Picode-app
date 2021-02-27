@@ -4,5 +4,5 @@ export interface Book {
   pages: string;
   authors: string;
   description: string;
-  tags: string[];
+  tags: Array<string>;
 }

@@ -14,7 +14,7 @@ export interface Ref {
   close: () => void;
 }
 
-export const CreateBook = React.forwardRef(({ loadBooks }: Props, ref) => {
+export const ModalCreateBook = React.forwardRef(({ loadBooks }: Props, ref) => {
   const showModal = useBoolean(false);
 
   const title = useInput("");
