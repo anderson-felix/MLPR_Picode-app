@@ -34,10 +34,10 @@ Após uma confirmação, o registro é deletado e não será mais exibido na pá
 ### [Linter]()
 
 Esse projeto usa o `prettier` com `eslint` (padrão airbnb) para estilo de código.\
-Por incompatibilidade de versão do `eslint` com o `react` e `typescript`, foram usadas <i>keywords</i> entre as linhas do código.
+Por incompatibilidade de versão entre o `eslint`, `react` e `typescript`, foram usadas <i>keywords</i> entre as linhas do código.
 
 <br>
 
 # Colaboração
 
-Contei com o apoio do [the invensi](https://github.com/theinvensi) na implementação da função `React.forwardRef` em `ModalCreateBook` para executar de forma precisa o modal a cada vez que ele for chamado.
+Contei com o apoio do [theinvensi](https://github.com/theinvensi) na implementação da função `React.forwardRef` em `ModalCreateBook` para executar de forma precisa o modal a cada vez que ele for chamado.
