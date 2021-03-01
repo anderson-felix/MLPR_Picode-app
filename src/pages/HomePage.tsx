@@ -14,6 +14,7 @@ import {
   Remove as RemoveBook,
 } from '../controllers/books';
 import { Book } from '../interfaces/Book';
+import logo from '../icons/favicon.png';
 
 export const HomePage = observer(() => {
   const { Search } = Input;
@@ -43,6 +44,7 @@ export const HomePage = observer(() => {
   return (
     <React.Fragment>
       <HeaderSpace>
+        <img src={logo} alt="Open book" className="logo" />
         <h2>
           <b>MLPR</b> - Melhores livros para relembrar
         </h2>
