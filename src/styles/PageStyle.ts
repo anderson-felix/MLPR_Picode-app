@@ -33,6 +33,12 @@ export const HeaderSpace = styled.div`
     font-family: 'Roboto', sans-serif;
   }
 
+  .logo {
+    width: 100px;
+    margin-left: 340px;
+    opacity: 60%;
+  }
+
   .space-header {
     display: flex;
     align-items: center;
