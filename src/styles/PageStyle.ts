@@ -21,7 +21,11 @@ export const LayoutDiv = styled.div`
 `;
 
 export const HeaderSpace = styled.div`
-  margin: 100px 400px 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px auto;
+  width: 800px;
   padding: 8px;
   border: 1px outset #9466ff49;
   border-radius: 6px;
@@ -35,7 +39,6 @@ export const HeaderSpace = styled.div`
 
   .logo {
     width: 100px;
-    margin-left: 340px;
     opacity: 60%;
   }
 
